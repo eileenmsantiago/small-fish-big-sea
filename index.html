@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Fish in a Big Sea</title>
+    <meta name="description" content ="A WebGL experiment using Three.js and Box2D"/>
+    <meta name="keywords" content ="three.js, webgl, game, 3d, animation, airplane, javascript"/>
+    <meta name="authors" content ="Eileen Santiago & Yang Yang"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    
+    <!-- <script src=“https://threejs.org/examples/js/loaders/GLTFLoader.js”></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.module.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script> -->
+        <script src="https://threejs.org/build/three.js"></script>
+        <!-- <script src=“http://threejs.org/build/three.min.js”></script> -->
+    
+
+</head>
+<body>
+    <!-- Load a container to hold header -->
+    <div class="game-container" id="gameContainer">
+        <div class="header">
+            <h1>Small Fish in a Big Sea</h1>
+        </div>
+    </div>
+    <!-- Load rendered scene -->
+    <div id="sea"></div>
+    <!-- Instructions section @ bottom of rendered scene -->
+    <div class="message" id="instructions">Help Flip doge the <span>fishing hooks</span></div>
+    <script type="text/javascript" src="./js/game.js"></script>
+</body>
+
+</html>
