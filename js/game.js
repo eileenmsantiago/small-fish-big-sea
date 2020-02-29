@@ -16,6 +16,7 @@ let
     scene, 
     camera, 
     fov, 
+    sea,
     aspectRatio, 
     nearFish, 
     farFish,
@@ -30,16 +31,22 @@ function init(event) {
     createScene();
 
     // Add the lights
-    createLights(); 
+    createLights(scene); 
 
     // Add the objects (fish, sea, sand)
     // createFish();
-    createSea();
+    createSea(scene);
     // createSand();
 
     document.addEventListener('mousemove', handleMouseMove, false);
 
     // Loop - render the scene on each frrame
+
+    var geometry = new THREE.CylinderGeometry( 50, 50, 200, 202 );
+    var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    var cylinder = new THREE.Mesh( geometry, material );
+    scene.add( cylinder );
+
     loop();
 }
 
@@ -49,14 +56,16 @@ function createScene() {
     WIDTH = window.innerWidth;
 
     // Scene
-    var scene = new THREE.Scene();
+    scene = new THREE.Scene();
+
+    console.log(THREE);
 
     // Camera
     aspectRatio = WIDTH / HEIGHT;
     fov = 60;
     nearPlane = 1; 
     farPlane = 1000; 
-    var camera = new THREE.PerspectiveCamera(
+    camera = new THREE.PerspectiveCamera(
         fov,
         aspectRatio,
         nearFish,
@@ -69,7 +78,7 @@ function createScene() {
     camera.position.y = 150;
 
     // Create the renderer 
-    var renderer = new THREE.WebGLRenderer({
+    renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
     });
@@ -123,10 +132,17 @@ function createLights() {
 
 }
 
+function createSea() {
+    sea = new Sea();
+    sea.mesh.position.y = -50;
+    scene.add(sea.mesh);
+}
+
 // ========== SEA
-Sea = function() {
+const Sea = function() {
+    console.log(THREE.CyclinderGeometry);
     // CREATE GEOMETRY SHAPE - cyclinder
-    var geometry = new THREE.CyclinderGeometry(600,600,800,70,20);
+    var geometry = new THREE.CylinderGeometry(600,600,800,70,20);
 
     geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2))
 
@@ -142,12 +158,6 @@ Sea = function() {
     this.mesh.receiveShadow = true;
 
     var sea;
-
-    function createSea() {
-        sea = new Sea();
-        sea.mesh.position.y = -50;
-        scene.add(sea.mesh);
-    }
 
 }
 
