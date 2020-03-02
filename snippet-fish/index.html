@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8 />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <script src="https://threejs.org/build/three.js"></script> 
+    <script src="http://threejs.org/build/three.min.js"></script> 
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- <script src="clock.js"></script> -->
+    <!-- <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script> -->
+
+    <!-- <script src="OrbitControls.js"></script> -->
+ 
+    <script>
+      let scene, camera, renderer;
+
+      function init() {
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xdddddd);
+
+        camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
+        
+        camera.rotation.y = 45/180*Math.PI;
+        camera.position.x = 800;
+        camera.position.y = 100;
+        camera.position.z = 1000;
+
+        //Ortbit Control
+        // controls = new THREE.OrbitControls(camera);
+        // controls.addEventListener('change', renderer);
+
+
+
+        hlight = new THREE.AmbientLight (0x404040,100);
+        scene.add(hlight);
+
+
+        // lighting
+        directionalLight = new THREE.DirectionalLight(0xffffff,100);
+        directionalLight.position.set(0,1,0);
+        directionalLight.castShadow = true;
+    
+
+
+
+        
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        
+        let loader = new THREE.GLTFLoader();
+
+        loader.load('scene.gltf', function(gltf){
+          fish = gltf.scene.children[0];
+          fish.scale.set(0.5,0.5,0.5);
+          scene.add(gltf.scene);
+          // var mixer = new THREE.AnimationMixer(fish);
+          // var clip1 = gltf.animations[0];
+          // var action1 = mixer.clipAction(clip1);
+          // action1.play();
+      
+          animate();
+        });
+
+        //The SECOND FISH
+     
+
+
+        // ... in render loop
+        // var dt = clock.getDelta()
+        // mixer.update(dt);
+
+      }
+
+
+      
+
+
+      
+      function animate() {
+        requestAnimationFrame(animate);
+
+        fish.rotation.x += 0.01
+        fish.rotation.y += 0.1
+
+        renderer.render(scene,camera);
+
+        
+      }
+      init();
+    </script>
+  </body>
+</html>
