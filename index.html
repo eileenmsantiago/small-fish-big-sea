@@ -6,9 +6,9 @@
     <title>Small Fish in a Big Sea</title>
     <meta name="description" content ="A WebGL experiment using Three.js and Box2D"/>
     <meta name="keywords" content ="three.js, webgl, game, 3d, animation, airplane, javascript"/>
-    <meta name="authors" content ="Eileen Santiago & Yang Yang"/>
+    <meta name="authors" content ="Oby Okoye, Eileen Santiago, and Yang Yang"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     
     <!-- <script src=“https://threejs.org/examples/js/loaders/GLTFLoader.js”></script> -->
@@ -18,6 +18,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script> -->
         <script src="https://threejs.org/build/three.js"></script>
         <!-- <script src=“http://threejs.org/build/three.min.js”></script> -->
+    <script src="/js/OrbitControl.js"></script>
+    <script src="/js/fish.js"></script>
+    <script src="/js/sea.js"></script>
+
+    <!-- <script src="/js/fishes.js"></script> -->
     
 
 </head>
@@ -27,11 +32,12 @@
         <div class="header">
             <h1>Small Fish in a Big Sea</h1>
         </div>
+        <!-- Load rendered scene -->
+        <div id="ocean"></div>
+    
+        <!-- Instructions section @ bottom of rendered scene -->
+        <div class="message" id="instructions">Help Flip doge the <span>fishing hooks</span></div>
     </div>
-    <!-- Load rendered scene -->
-    <div id="sea"></div>
-    <!-- Instructions section @ bottom of rendered scene -->
-    <div class="message" id="instructions">Help Flip doge the <span>fishing hooks</span></div>
     <script type="text/javascript" src="./js/game.js"></script>
 </body>
 

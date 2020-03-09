@@ -1,0 +1,27 @@
+{
+  "name": "small-fish-big-sea",
+  "version": "1.0.0",
+  "description": "A Three.js interactive module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eileenmsantiago/small-fish-big-sea.git"
+  },
+  "keywords": [
+    "three.js",
+    "box2d",
+    "interactive"
+  ],
+  "author": "Eileen, Oby, and Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eileenmsantiago/small-fish-big-sea/issues"
+  },
+  "homepage": "https://github.com/eileenmsantiago/small-fish-big-sea#readme",
+  "devDependencies": {
+    "three": "^0.114.0"
+  }
+}

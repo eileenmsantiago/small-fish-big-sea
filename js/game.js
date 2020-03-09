@@ -20,43 +20,37 @@ var scene,
     container;
 
 var HEIGHT, 
-WIDTH,
-windowHalfX,
-windowHalfY,
-xLimit,
-yLimit;
+    WIDTH,
+    windowHalfX,
+    windowHalfY,
+    xLimit,
+    yLimit;
 
 // FISH BODY PARTS
 var fish, 
-bodyFish,
-tailFish,
-topFish,
-rightIris,
-leftIris,
-rightEye,
-leftEye,
-lipsFish;
-// tooth1,
-// tooth2,
-// tooth3;
+    bodyFish,
+    tailFish,
+    topFish,
+    rightIris,
+    leftIris,
+    rightEye,
+    leftEye;
 
 //  FISH SPEED
-
-var fishFastColor = {r:105, g:151, b:255};
-    fishSlowColor = {r:255, g:95, b:84}; 
-    angleFin = 0; 
+// var fastColor = {r:105, g:151, b:255};
+//     fishSlowColor = {r:255, g:95, b:84}; 
+//     angleFin = 0; 
 
 // var flyingParticles = [];
 // var waitingParticles = [];
 var maxParticlesZ = 600;
 
 // SPEED
-var speed = {x:0, y:0};
+let speed = {x:0, y:0};
 var smoothing = 10;
 
 // MISC
-var mousePos = {x:0, y:0};
-var stats;
+let mousePos = {x:0, y:0};
 var halfPI = Math.PI/2;
 
 
@@ -81,7 +75,7 @@ function init() {
     // renderer
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
-    container = document.getElementById('sea');
+    container = document.getElementById('ocean');
     container.appendChild(renderer.domElement);
 
     var ang = (fieldOfView/2)* Math.PI / 180; 
@@ -91,7 +85,6 @@ function init() {
     windowHalfX = WIDTH / 2;
     windowHalfY = HEIGHT / 2;
 
-    // Handles resize and mouse move events
     window.addEventListener('resize', onWindowResize, false);
     document.addEventListener('mousemove', handleMouseMove, false);
 }
@@ -166,9 +159,9 @@ function loop() {
     sideLeftFish.rotation.x = halfPI + sideFinsCycle*.2;
 
     // color changes based on speed
-    var rvalue = (fishSlowColor.r + (fishFastColor.r - fishSlowColor.r)*s2)/255;
-    var gvalue = (fishSlowColor.g + (fishFastColor.g - fishSlowColor.g)*s2)/255;
-    var bvalue = (fishSlowColor.b + (fishFastColor.b - fishSlowColor.b)*s2)/255;
+    var rvalue = (fishSlowColor.r + (fastColor.r - fishSlowColor.r)*s2)/255;
+    var gvalue = (fishSlowColor.g + (fastColor.g - fishSlowColor.g)*s2)/255;
+    var bvalue = (fishSlowColor.b + (fastColor.b - fishSlowColor.b)*s2)/255;
     bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
 
     // scale of fish updates depending on the speed 
@@ -194,109 +187,110 @@ function loop() {
 
 // LIGHTS
 function createLights() {
-light = new THREE.HemisphereLight(0xffffff, 0xffffff, .3)
-scene.add(light);
-shadowLight = new THREE.DirectionalLight(0xffffff, .8);
-shadowLight.position.set(1, 1, 1);
-scene.add(shadowLight);
+    light = new THREE.HemisphereLight(0xffffff, 0xffffff, .3)
+    scene.add(light);
+    shadowLight = new THREE.DirectionalLight(0xffffff, .8);
+    shadowLight.position.set(1, 1, 1);
+    scene.add(shadowLight);
 }
 
-function createFish() {
-    fish = new THREE.Group();
+// function createFish() {
+//     fish = new THREE.Group();
 
-    // Body
-    var bodyGeom = new THREE.BoxGeometry(150, 120, 120);
-    var bodyMat = new THREE.MeshLambertMaterial({
-        color: 0x80f5fe,
-        shading: THREE.FlatShading
-    });
-    bodyFish = new THREE.Mesh(bodyGeom,bodyMat);
+//     // Body
+//     var bodyGeom = new THREE.BoxGeometry(150, 120, 120);
+//     var bodyMat = new THREE.MeshLambertMaterial({
+//         color: 0xff3333,
+//         shading: THREE.FlatShading
+//     });
+//     bodyFish = new THREE.Mesh(bodyGeom,bodyMat);
 
-    // Tail
-    console.log(THREE.CyclinderGeometry)
-    var tailGeom = new THREE.CylinderGeometry(0, 80, 80, 10, false);
-    var tailMat = new THREE.MeshLambertMaterial({
-        color: 0xff00dc,
-        shading: THREE.FlatShading
-    });
+//     // Tail
+//     console.log(THREE.CyclinderGeometry)
+//     var tailGeom = new THREE.CylinderGeometry(0, 80, 80, 10, false);
+//     var tailMat = new THREE.MeshLambertMaterial({
+//         color: 0xff8800,
+//         shading: THREE.FlatShading
+//     });
 
-    tailFish = new THREE.Mesh(tailGeom, tailMat);
-    tailFish.scale.set(.7, 1, .1);
-    tailFish.position.x = -60;
-    tailFish.rotation.z = -halfPI;
+//     tailFish = new THREE.Mesh(tailGeom, tailMat);
+//     tailFish.scale.set(.8, 1, .1);
+//     tailFish.position.x = -60;
+//     tailFish.rotation.z = -halfPI;
 
-    // Fins
-    topFish = new THREE.Mesh(tailGeom, tailMat);
-    topFish.scale.set(.8,1,.1);
-    topFish.position.x = -20; 
-    topFish.position.y = 60; 
-    topFish.rotation.z = -halfPI;
+//     // Fins
+//     topFish = new THREE.Mesh(tailGeom, tailMat);
+//     topFish.scale.set(.8,1,.1);
+//     topFish.position.x = -20; 
+//     topFish.position.y = 60; 
+//     topFish.rotation.z = -halfPI;
 
-    sideRightFish = new THREE.Mesh(tailGeom, tailMat);
-    sideRightFish.scale.set(.8,1,.1);
-    sideRightFish.rotation.x = halfPI;
-    sideRightFish.rotation.z = -halfPI;
-    sideRightFish.position.x = 0; 
-    sideRightFish.position.y = -50; 
-    sideRightFish.position.z = -60; 
+//     sideRightFish = new THREE.Mesh(tailGeom, tailMat);
+//     sideRightFish.scale.set(.8,1,.1);
+//     sideRightFish.rotation.x = halfPI;
+//     sideRightFish.rotation.z = -halfPI;
+//     sideRightFish.position.x = 0; 
+//     sideRightFish.position.y = -50; 
+//     sideRightFish.position.z = -60; 
 
-    sideLeftFish = new THREE.Mesh(tailGeom, tailMat);
-    sideLeftFish.scale.set(.8,1,.1);
-    sideLeftFish.rotation.x = halfPI;
-    sideLeftFish.rotation.z = -halfPI;
-    sideLeftFish.position.x = 0; 
-    sideLeftFish.position.y = -50; 
-    sideLeftFish.position.z = 60; 
+//     sideLeftFish = new THREE.Mesh(tailGeom, tailMat);
+//     sideLeftFish.scale.set(.8,1,.1);
+//     sideLeftFish.rotation.x = halfPI;
+//     sideLeftFish.rotation.z = -halfPI;
+//     sideLeftFish.position.x = 0; 
+//     sideLeftFish.position.y = -50; 
+//     sideLeftFish.position.z = 60; 
 
-    // Eyes
-    var eyeGeom = new THREE.BoxGeometry(40, 40,5);
-    var eyeMat = new THREE.MeshLambertMaterial({
-        color: 0xffffff,
-        shading: THREE.FlatShading
-    });
+//     // Eyes
+//     var eyeGeom = new THREE.BoxGeometry(40, 40,5);
+//     var eyeMat = new THREE.MeshLambertMaterial({
+//         color: 0xffffff,
+//         shading: THREE.FlatShading
+//     });
 
-    rightEye = new THREE.Mesh(eyeGeom,eyeMat );
-    rightEye.position.z = -60;
-    rightEye.position.x = 25;
-    rightEye.position.y = -10;
+//     rightEye = new THREE.Mesh(eyeGeom,eyeMat );
+//     rightEye.position.z = -60;
+//     rightEye.position.x = 25;
+//     rightEye.position.y = -10;
 
-    var irisGeom = new THREE.BoxGeometry(10, 10,3);
-    var irisMat = new THREE.MeshLambertMaterial({
-        color: 0x330000,
-        shading: THREE.FlatShading
-    });
+//     var irisGeom = new THREE.BoxGeometry(10, 10,3);
+//     var irisMat = new THREE.MeshLambertMaterial({
+//         color: 0x330000,
+//         shading: THREE.FlatShading
+//     });
 
-    rightIris = new THREE.Mesh(irisGeom,irisMat );
-    rightIris.position.z = -65;
-    rightIris.position.x = 35;
-    rightIris.position.y = -10;
+//     rightIris = new THREE.Mesh(irisGeom,irisMat );
+//     rightIris.position.z = -65;
+//     rightIris.position.x = 35;
+//     rightIris.position.y = -10;
 
-    leftEye = new THREE.Mesh(eyeGeom,eyeMat );
-    leftEye.position.z = 60;
-    leftEye.position.x = 25;
-    leftEye.position.y = -10;
+//     leftEye = new THREE.Mesh(eyeGeom,eyeMat );
+//     leftEye.position.z = 60;
+//     leftEye.position.x = 25;
+//     leftEye.position.y = -10;
 
-    leftIris = new THREE.Mesh(irisGeom,irisMat );
-    leftIris.position.z = 65;
-    leftIris.position.x = 35;
-    leftIris.position.y = -10;
+//     leftIris = new THREE.Mesh(irisGeom,irisMat );
+//     leftIris.position.z = 65;
+//     leftIris.position.x = 35;
+//     leftIris.position.y = -10;
 
-    fish.add(bodyFish);
-    fish.add(tailFish);
-    fish.add(topFish);
-    fish.add(sideRightFish);
-    fish.add(sideLeftFish);
-    fish.add(rightEye);
-    fish.add(rightIris);
-    fish.add(leftEye);
-    fish.add(leftIris);
+//     fish.add(bodyFish);
+//     fish.add(tailFish);
+//     fish.add(topFish);
+//     fish.add(sideRightFish);
+//     fish.add(sideLeftFish);
+//     fish.add(rightEye);
+//     fish.add(rightIris);
+//     fish.add(leftEye);
+//     fish.add(leftIris);
 
-    fish.rotation.y = -Math.PI/4;
-    scene.add(fish);
-}
+//     fish.rotation.y = -Math.PI/4;
+//     scene.add(fish);
+// }
 
 init();
 createLights();
 createFish();
+// Fishes();
 loop();
 
