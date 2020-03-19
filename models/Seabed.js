@@ -8,7 +8,7 @@ class Seabed {
         this.hSeg=20;
         this.ampR= 20;
         this.speedC= .015;
-        this.color= 0x531e1e;
+        this.color= 0xff7c5e;
         this.rotation= .005;
         this.x= 0;
         this.y= -620;

@@ -59,7 +59,6 @@ class JellyFish {
 class TentaclePart {
 
     constructor() {
-        //the tentacles are made of multiple little spheres
         const geometry = new THREE.SphereGeometry( 2, 6, 6);
         const material = new THREE.MeshPhongMaterial({color: 0xfF90a0, flatShading:true, opacity:.65, transparent:true});
         this.xpos=0;
@@ -80,7 +79,6 @@ class TentaclePart {
 class Tentacle {
 
     constructor() {
-
 
         this.n = 20;
         this.offset = 5;
