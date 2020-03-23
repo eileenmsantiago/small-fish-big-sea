@@ -17,9 +17,9 @@ const   Pi = Math.PI,
         camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 1, 10000),
         renderer = new THREE.WebGLRenderer({alpha: true, antialias: true}),
         container = document.getElementById('ocean'),
-        ambientLight = new THREE.AmbientLight(0x045c7c, .5),
-        hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9),
-        shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+        ambientLight = new THREE.AmbientLight(0x404040, .5),
+        hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .1),
+        shadowLight = new THREE.DirectionalLight(0xffffff, 1);
 
 const settings={
     camera: {

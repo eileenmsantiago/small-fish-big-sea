@@ -3,13 +3,13 @@ class Seabed {
     constructor() {
 
         this.radius= 660;
-        this.height= 700;
-        this.rSeg=50;
+        this.height= 600;
+        this.rSeg=30;
         this.hSeg=20;
         this.ampR= 20;
-        this.speedC= .015;
-        this.color= 0x531e1e;
-        this.rotation= .005;
+        this.speedC= .01;
+        this.color= 0xCEBD9B;
+        this.rotation= .001;
         this.x= 0;
         this.y= -620;
         this.z= -50;
@@ -36,8 +36,7 @@ class Seabed {
 
         const material = new THREE.MeshPhongMaterial({
             color: this.color,
-            transparent: true,
-            opacity: .99,
+            opacity: 1,
             flatShading: true,
         });
 
