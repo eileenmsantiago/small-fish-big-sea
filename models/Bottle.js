@@ -2,10 +2,10 @@
 var loader = new THREE.GLTFLoader();
 var url = "models/plastic_water_bottle/scene.gltf";
 
-class Bottle {
+class Bottles {
     constructor(seabedHeight){
         this.seabedHeight = seabedHeight;
-        this.numOfBottl = 30;
+        this.numOfBottles = 30;
         this.innerR = 8;
         this.outerR = 16;
         this.rSegments = 8;
@@ -24,15 +24,16 @@ class Bottle {
             model = gltf.scene.children[0].children[0].children[0].children[0].children[0];
             model.scale.set(10,10,10); 
             model.position.set(0,100,0);  
+
             
-            for (let i = 0; i < that.numOfBottl; i++) {
+            for (let i = 0; i < that.numOfBottles; i++) {
                 let bottle = model.clone();
         
                 //store bottles
                 that.group.add(bottle);
                 that.modelList.push(bottle);
 
-                bottle.angle = 2 * Pi * i / that.numOfBottl - Math.random() * .3;
+                bottle.angle = 2 * Pi * i / that.numOfBottles - Math.random() * .3;
                 bottle.angleCopy = bottle.angle;
 
                 bottle.distance = that.seabedHeight + 50 + Math.random() * 50;
@@ -48,6 +49,8 @@ class Bottle {
                 bottle.position.z = 110;
 
                 bottle.position.set(x,y,z);
+                
+                
             }
   
         }, undefined, function (error) {
@@ -56,8 +59,18 @@ class Bottle {
 
         scene.add(that.group);
 
-        // that.rotateBottl();
+        that.rotateBottles();
     }
+
+    rotateBottles (){
+        let that = this;
+        function animateR() {
+                that.group.rotateZ(0.01);
+                requestAnimationFrame(animateR);
+            }
+        animateR();
+    }
+
+
 }
 
-// Bottles();
