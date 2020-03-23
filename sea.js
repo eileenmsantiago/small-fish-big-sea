@@ -157,8 +157,3 @@ document.addEventListener('click', function (event) {
         flag=true;
     }
  }, false);
-
-//  document.getElementById("button").addEventListener('click', function(){
-//     settings.oNpause=!settings.oNpause;
-//     document.getElementById("overlay").style.display="none";
-//  },false);
