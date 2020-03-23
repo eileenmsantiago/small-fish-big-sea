@@ -3,6 +3,7 @@ body {
 	height: 100%;
 	overflow: hidden;
 	font-family: 'Open Sans', sans-serif;
+	color: #05233a;
 	font-size: 1em;
 }
 #ocean {
@@ -10,7 +11,6 @@ body {
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(#046a79, #045c7c, #0d324e);
-	/* background: linear-gradient(#DAF4FB, #B1DCE4, #8BBDC7); */
 }
 
 canvas {
@@ -19,13 +19,14 @@ canvas {
 	display: block;
 }
 
-.header {
+header {
 	opacity: 0.75;
+	z-index: 100;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	display: none;
 	top: 0;
 	left: 0;
+	text-align: center;
 }
 

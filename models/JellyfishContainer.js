@@ -4,7 +4,7 @@ class JellyfishContainer {
     constructor(seabedHeight) {
 
         this.seabedHeight = seabedHeight;
-        this.numOfJellyFish = 25;
+        this.numOfJellyFish = 15;
         this.innerR = 8;
         this.outerR = 16;
         this.rSegments = 8;

@@ -1,5 +1,3 @@
-
-
 let mousePos = {x:0, y:0};
 let HEIGHT = window.innerHeight;
 let WIDTH = window.innerWidth;
@@ -10,7 +8,7 @@ let windowHalfY = HEIGHT / 2;
 // SPEED
 let speed = {x:0, y:0};
 var smoothing = 10;
-const   Pi = Math.PI,
+const Pi = Math.PI,
         halfPI = Math.PI / 2;
         scene = new THREE.Scene(),
         camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 1, 10000),
@@ -37,11 +35,14 @@ const settings={
 
 let water,
     jellyFishContainer,
+    bottle,
     seabed,
     whale,
     tentacles = [],
     jellyDisplacementX = 0,
     jellyDisplacementY = 0,
+    bottleDisplacementX = 0,
+    bottleDisplacementY = 0,
     crashSpeedX = 0,
     crashSpeedY = 0,
     crash,
@@ -88,13 +89,21 @@ function createWater(){
 }
 
 function createJellyFishContainer() {
-    jellyFishContainer = new JellyfishContainer(seabed.height);
+    jellyFishContainer = new JellyfishContainer(seabed.height, JellyFish);
     scene.add(jellyFishContainer.mesh)
+}
+function createBottleContainer() {
+    bottleContainer = new BottleContainer(seabed.height, Bottle);
+    scene.add(bottleContainer.mesh)
 }
 
 function createJellyFish(){
 	whale = new Whale();
     scene.add(whale.mesh);
+}
+function createBottle(){
+	bottle = new Bottle();
+    scene.add(bottle.mesh);
 }
 
 function loop(){
@@ -105,6 +114,7 @@ function loop(){
     water.move(params.speed);
     jellyFishContainer.rotateJellyfish(.003* params.speed, params.tsize);
     jellyFishContainer.hide();
+    bottleContainer.rotateBottle(.003* params.speed, params.tsize);
 
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
@@ -118,6 +128,8 @@ function init(event){
     createWater();
     createJellyFish();
     createJellyFishContainer();
+    createBottle();
+    createBottleContainer();
     loop();
 }
 
