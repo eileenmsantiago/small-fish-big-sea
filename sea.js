@@ -40,7 +40,7 @@ let water,
     jellyFishContainer,
     seabed,
     whale,
-    tentacles = [],
+    // tentacles = [],
     jellyDisplacementX = 0,
     jellyDisplacementY = 0,
     crashSpeedX = 0,
@@ -51,7 +51,7 @@ let water,
     countTentacles=0;
 
 function initScene() { //scene initialisation
-    scene.fog = new THREE.Fog(0x38bbb7, -200,950);
+    scene.fog = new THREE.Fog(0xc9f2ec, -170,900);
     camera.position.set(settings.camera.x,settings.camera.y,settings.camera.z);
     camera.rotation.x=settings.camera.xRot;
     renderer.setSize(WIDTH, HEIGHT);

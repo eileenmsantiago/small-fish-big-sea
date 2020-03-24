@@ -8,8 +8,8 @@ class Seabed {
         this.hSeg=20;
         this.ampR= 20;
         this.speedC= .015;
-        this.color= 0x531e1e;
-        this.rotation= .005;
+        this.color= 0xb6cbd9;
+        this.rotation= .001;
         this.x= 0;
         this.y= -620;
         this.z= -50;
@@ -37,7 +37,7 @@ class Seabed {
         const material = new THREE.MeshPhongMaterial({
             color: this.color,
             transparent: true,
-            opacity: .99,
+            opacity: 1,
             flatShading: true,
         });
 
